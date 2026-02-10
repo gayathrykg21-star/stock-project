@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTI_SMS - Total Stock Management System (PHP Project)</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B2A4A;
+  --navy-dark: #0F1D36;
+  --navy-light: #2C3E6B;
+  --mustard: #D4A017;
+  --mustard-light: #E8B92F;
+  --grey-bg: #F0F2F5;
+  --white: #FFFFFF;
+  --dark-text: #2D3436;
+  --light-text: #636E72;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);
+  min-height: 100vh;
+  color: var(--dark-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo-icon {
+  width: 100px;
+  height: 100px;
+  background: var(--mustard);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+}
+
+.logo-icon i {
+  font-size: 48px;
+  color: var(--navy-dark);
+}
+
+h1 {
+  color: var(--white);
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+h1 span {
+  color: var(--mustard);
+}
+
+.subtitle {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  margin-bottom: 24px;
+}
+
+.card h2 {
+  color: var(--navy);
+  font-size: 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card h2 i {
+  color: var(--mustard);
+}
+
+.card p {
+  color: var(--light-text);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.feature {
+  background: var(--grey-bg);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.feature i {
+  color: var(--mustard);
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
+}
+
+.feature span {
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.setup-steps {
+  background: var(--grey-bg);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 24px 0;
+}
+
+.setup-steps h3 {
+  color: var(--navy);
+  font-size: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.setup-steps ol {
+  margin-left: 20px;
+  color: var(--dark-text);
+}
+
+.setup-steps li {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.setup-steps code {
+  background: var(--navy);
+  color: var(--mustard);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.credentials {
+  background: var(--navy);
+  border-radius: 12px;
+  padding: 24px;
+  color: var(--white);
+}
+
+.credentials h3 {
+  color: var(--mustard);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.cred-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cred-table th, .cred-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.cred-table th {
+  color: var(--mustard);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.cred-table td code {
+  background: rgba(255,255,255,0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.file-structure {
+  background: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  color: #d4d4d4;
+  font-family: 'Consolas', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+
+.file-structure .folder { color: var(--mustard); }
+.file-structure .file { color: #9cdcfe; }
+.file-structure .comment { color: #6a9955; }
+
+.badge {
+  display: inline-block;
+  background: var(--mustard);
+  color: var(--navy-dark);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.version-info {
+  text-align: center;
+  margin-top: 24px;
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="logo-icon">
+      <i class="fas fa-boxes-stacked"></i>
+    </div>
+    <h1>MTI_<span>SMS</span></h1>
+    <p class="subtitle">Total Stock Management System — PHP Project</p>
+  </div>
+
+  <div class="card">
+    <h2><i class="fas fa-info-circle"></i> About This Project</h2>
+    <p>
+      <strong>MTI_SMS</strong> is a complete PHP-based stock management system designed for college administration. 
+      It provides comprehensive inventory tracking, stock operations, and request management with role-based access control.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature"><i class="fas fa-users"></i> <span>User Management</span></div>
+      <div class="feature"><i class="fas fa-layer-group"></i> <span>Category System</span></div>
+      <div class="feature"><i class="fas fa-clipboard-list"></i> <span>Item Register</span></div>
+      <div class="feature"><i class="fas fa-arrow-down"></i> <span>Stock In</span></div>
+      <div class="feature"><i class="fas fa-warehouse"></i> <span>View Stock</span></div>
+      <div class="feature"><i class="fas fa-archive"></i> <span>Old Stock</span></div>
+      <div class="feature"><i class="fas fa-truck"></i> <span>Dispatch System</span></div>
+      <div class="feature"><i class="fas fa-paper-plane"></i> <span>Request Workflow</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><i class="fas fa-cogs"></i> Setup Instructions</h2>
+    
+    <div class="setup-steps">
+      <h3><i class="fas fa-database"></i> Step 1: Database Setup</h3>
+      <ol>
+        <li>Create a MySQL database named <code>mti_sms</code></li>
+        <li>Import <code>public/database/mti_sms.sql</code> via phpMyAdmin or command line</li>
+      </ol>
+    </div>
+
+    <div class="setup-steps">
+      <h3><i class="fas fa-file-code"></i> Step 2: Configure Database Connection</h3>
+      <ol>
+        <li>Open <code>public/config/database.php</code></li>
+        <li>Update <code>DB_HOST</code>, <code>DB_USER</code>, <code>DB_PASS</code> as needed</li>
+      </ol>
+    </div>
+
+    <div class="setup-steps">
+      <h3><i class="fas fa-server"></i> Step 3: Deploy</h3>
+      <ol>
+        <li>Copy the <code>public/</code> folder contents to your web server</li>
+        <li>Access via <code>http://localhost/mti_sms/</code> or your domain</li>
+      </ol>
+    </div>
+
+    <div class="credentials">
+      <h3><i class="fas fa-key"></i> Demo Login Credentials</h3>
+      <table class="cred-table">
+        <tr>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Role</th>
+        </tr>
+        <tr>
+          <td><code>admin</code></td>
+          <td><code>admin123</code></td>
+          <td>STOCK_ADMIN</td>
+        </tr>
+        <tr>
+          <td><code>hod_cs</code></td>
+          <td><code>hod123</code></td>
+          <td>HOD</td>
+        </tr>
+        <tr>
+          <td><code>dept_mech</code></td>
+          <td><code>dept123</code></td>
+          <td>DEPT_IN_CHARGE</td>
+        </tr>
+        <tr>
+          <td><code>staff1</code></td>
+          <td><code>staff123</code></td>
+          <td>STAFF</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><i class="fas fa-folder-tree"></i> Project File Structure</h2>
+    <div class="file-structure">
+<span class="folder">public/</span>
+├── <span class="file">index.php</span>              <span class="comment"># Login page</span>
+├── <span class="file">dashboard.php</span>          <span class="comment"># Home/Dashboard</span>
+├── <span class="file">users.php</span>              <span class="comment"># User management</span>
+├── <span class="file">categories.php</span>         <span class="comment"># Category management</span>
+├── <span class="file">items.php</span>              <span class="comment"># Item register</span>
+├── <span class="file">stock-in.php</span>           <span class="comment"># Stock in operations</span>
+├── <span class="file">view-stock.php</span>         <span class="comment"># View stock</span>
+├── <span class="file">old-stock.php</span>          <span class="comment"># Old stock management</span>
+├── <span class="file">dispatched.php</span>         <span class="comment"># Dispatch/Stock out</span>
+├── <span class="file">requests.php</span>           <span class="comment"># Item requests</span>
+├── <span class="file">logout.php</span>             <span class="comment"># Logout handler</span>
+├── <span class="folder">config/</span>
+│   ├── <span class="file">database.php</span>       <span class="comment"># Database configuration</span>
+│   └── <span class="file">session.php</span>        <span class="comment"># Session management</span>
+├── <span class="folder">includes/</span>
+│   ├── <span class="file">header.php</span>         <span class="comment"># Common header with sidebar</span>
+│   └── <span class="file">footer.php</span>         <span class="comment"># Common footer</span>
+├── <span class="folder">assets/css/</span>
+│   └── <span class="file">style.css</span>          <span class="comment"># Complete stylesheet</span>
+├── <span class="folder">database/</span>
+│   └── <span class="file">mti_sms.sql</span>        <span class="comment"># Database schema & data</span>
+└── <span class="file">README.md</span>              <span class="comment"># Documentation</span>
+    </div>
+  </div>
+
+  <div class="version-info">
+    <p>MTI_SMS v2.0.0 (PHP) | Built with PHP 5.5+ & MySQL 5.5+ | Navy & Mustard Theme</p>
+  </div>
+</div>
+</body>
+</html>
